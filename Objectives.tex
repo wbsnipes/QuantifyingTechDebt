@@ -1,0 +1,36 @@
+The objectives for this idea paper are to define the framework for estimating the interest payments on items representing technical debt.  Relating this concept to the \TD  metaphor, we define a low level view of interest as the time required for developers to comprehend a class as they are working on code within the class or related to the class.   The result of this is we assign interest payments to all code meeting the criteria that \TD cannot be completely eliminated from code.  It also views \TD as dependent upon the maintenance and evolution activity in the code base, meeting the criteria that \TD could result from a context shift requiring stable code to be revised. The measurement system provides a continuous assessment of the interest payments on \TD allowing the code with the highest interest payment code to be prioritized by cost.  We seek to have a balance between pure cost to implement changes with cost to comprehend by structuring measurements around comprehension sessions for each class.
+
+The comprehension effort relates to \TD through occurrence of code smells in one dimension.  For example, consider the code smell of Feature Envy  where a method makes too many calls to other classes to obtain data or functionality.  By collecting the number and time spent visiting other classes within a session, we can estimate the effort required to understand dependencies by the developer.  The total count of visits to other classes relates to the Feature Envy smell or Inappropriate Intimacy.  The number of classes visited (unique classes) in each session could  relate to the Shotgun Surgery smell particularly when multiple classes are edited in a session.  The time spent visiting classes and time per class visited may relate to the Long Class smell \cite{Fowler1999Refactoring}.  
+
+\Fix{Session=Block in this text}
+
+\Fix{Probably should not use GQM for an idea paper, but it helps me get specific on measures and metrics we might use}
+
+To support the goal of measuring comprehension effort for code, we define the following metrics:
+
+When considering a measurement model for comprehension, the following questions become relevant:
+
+\begin{itemize}
+	\item[] How much time does the developer spend understanding the code related to the change they are making?
+	\item[] How many code elements does the developer need to review related to the change?
+	\item[] How many dependent classes does the developer need to review related to the change?
+	\item[] How much more time do developers have to spend comprehending code with higher levels of \TD?
+	\item[] What code smells are correlated with developer code comprehension time?
+	\item[] 
+\end{itemize}
+
+\begin{itemize}
+	\item[] For a given session, the time required to comprehend the central class
+	\item[] Number of classes viewed in a session that are not the central class
+	\item[] For a given session, the number of unique classes visited that are not the central class
+	\item[] For classes that are not central to the session, the time required to comprehend them
+	\item[] Time per class viewed in the session for classes that are not central to the session
+
+\end{itemize}
+
+
+We propose to quantify effort to comprehend classes using a monitoring tool and organizing the data as follows:
+
+Define a session as moving time window where the developer is investigating a certain class.  Within the session, calculate the time spent viewing the class that defined the session (central class), and time spent viewing other classes.  Determine the count of visits to all classes within the session.   When sessions repeat, additional or fewer classes may be viewed by the developer, regardless they incur some comprehension effort which we add to the interest payments.  In each session, we determine the interest amount from the comprehension data quantifying it in hours.  
+
+\Fix{What about separating the time for making the change from the comprehension time?}

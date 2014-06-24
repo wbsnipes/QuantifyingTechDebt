@@ -1,0 +1,19 @@
+% The following commands make LaTeX not consider the periods in a few
+% abbreviations as periods at the end of sentences.
+\usepackage{color}
+
+\newcommand*{\eg}{e.g.,\@}
+%
+\newcommand*{\ie}{i.e.\@}
+%
+\makeatletter
+%
+\newcommand*{\etal}{\@ifnextchar{.}{et al}{et al.\@}}
+%
+\newcommand*{\TD}{Technical Debt \@}
+%
+\makeatother
+% Wraps notes on what needs to get fixed.
+\newcommand{\Fix}[1]{\textcolor{red}{[#1]}}
+% Wraps junk text
+\newcommand{\Comment}[1]{}
