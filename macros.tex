@@ -10,7 +10,7 @@
 %
 \newcommand*{\etal}{\@ifnextchar{.}{et al}{et al.\@}}
 %
-\newcommand*{\TD}{Technical Debt \@}
+\newcommand\TD{\@ifnextchar{.}{\textnormal{technical debt}}{\textnormal{technical debt }}}
 %
 \makeatother
 % Wraps notes on what needs to get fixed.
