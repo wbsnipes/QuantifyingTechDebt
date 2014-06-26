@@ -5,3 +5,10 @@ Several approaches for estimating the principal value for debt use heuristics re
 While these models provide the ability to estimate debt; in industry, it may be difficult to justify reducing technical debt without more specific measurements of the impact on day-to-day maintenance activities.  Developers may be forced to work around areas of the code with technical debt until the debt significantly impacts velocity of future development.  In this paper, we propose a framework to support continuous evaluation of interest payments on the debt by evaluating the effort developers must expend comprehending code as they make changes. 
 
 The framework proposed combines effort data from monitoring developer actions to derive the interest payment with statically measured code maintainability that derives the principal.  \Fix{A picture would be good here} The framework calculates comprehension effort with a monitoring tool that records developer actions in the Integrated Development Environment (IDE).  The monitoring tool, named Blaze described in \cite{Snipes2014Experiences}, allows measurements of code navigation actions, class relationships, and edit actions in a temporally sequenced log.  Analyzing this data for each software element provides a measured amount effort the developer expends comprehending the code element in order to perform maintenance actions. With the effort data on code elements, the framework provides a correlation with a structural code measurement indicative of \TD.  This gives continuous estimates for and evidence of how much the \TD drives developer code comprehension effort.
+
+
+\Fix{Developers spend more time reading and navigating source code than writing it~\cite{Ko_etal:06,LaToza_etal:06}.}
+
+\Fix{Software maintenance accounts for up to 70\% of software development cost~\cite{Boehm:81}.}
+
+\Fix{Most (about 50\% to 80\%) of developer effort during software maintenance is spent on program comprehension activities~\cite{Fjeldstad_Hamlen:82,Standish:84,vonMayrhauser_etal:97,Tiarks:11}.}
