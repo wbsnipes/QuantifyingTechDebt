@@ -2,6 +2,8 @@ The objectives for this idea paper are to define the framework for estimating th
 
 The comprehension effort relates to \TD through occurrence of code smells in one dimension.  For example, consider the code smell of Feature Envy  where a method makes too many calls to other classes to obtain data or functionality.  By collecting the number and time spent visiting other classes within a session, we can estimate the effort required to understand dependencies by the developer.  The total count of visits to other classes relates to the Feature Envy smell or Inappropriate Intimacy.  The number of classes visited (unique classes) in each session could  relate to the Shotgun Surgery smell particularly when multiple classes are edited in a session.  The time spent visiting classes and time per class visited may relate to the Long Class smell \cite{Fowler_etal:1999}.  
 
+In order to confirm the above ideas, we also collected source code metrics from the code being viewed and edited by the developers.  Using the idea from Nugroho et al. of identify potential code maintainability issues from source metrics, we consider how the observed class visit events in our comprehension data relate to static code metrics~\cite{Nugroho2011Empirical} provided by the Understand tool from Scientific Tool Works\footnote{www.scitools.com}.  
+
 \Fix{Session=Block in this text}
 
 \Fix{Probably should not use GQM for an idea paper, but it helps me get specific on measures and metrics we might use}
