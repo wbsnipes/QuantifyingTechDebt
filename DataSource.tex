@@ -1,4 +1,32 @@
 
+
+We define the data framework as matching of comprehension data with code structure data at the module level.  
+%Aligning these two data sources at the module level allows us to ask questions of the intersected data set.  For example, we find the following questions interesting:
+
+%\begin{itemize}
+%	\item[] How much time does the developer spend understanding the code related to the change they are making?
+%	\item[] How many code elements does the developer need to review related to the change?
+%	\item[] How many dependent classes does the developer need to review related to the change?
+%	\item[] How much more time do developers have to spend comprehending code with higher levels of \TD?
+%	\item[] What code smells are correlated with developer code comprehension time?
+%	\item[] 
+%\end{itemize}
+
+
+The comprehension data we can define the following measures:
+\begin{itemize}
+	\item[] For a given session, the time required to comprehend the central class
+	\item[] Number of classes viewed in a session that are not the central class
+	\item[] For a given session, the number of unique classes visited that are not the central class
+	\item[] For classes that are not central to the session, the time required to comprehend them
+	\item[] Time per class viewed in the session for classes that are not central to the session
+
+\end{itemize}
+
+Developers at ABB volunteered to install $Blaze$ and record their actions in Visual Studio.  The data set evaluated for this study focuses on two developers with more than 3 months of data.  Because the data are anonymous, we have no demographic information on the developers to characterize their experience or knowledge.
+
+Define a session as moving time window where the developer is investigating a certain class.  Within the session, calculate the time spent viewing the class that defined the session (central class), and time spent viewing other classes.  Determine the count of visits to all classes within the session.   When sessions repeat, additional or fewer classes may be viewed by the developer, regardless they incur some comprehension effort which we add to the interest payments.  In each session, we determine the interest amount from the comprehension data quantifying it in hours.  
+
 Data for calculating the comprehension effort for developers comes from the $Blaze$~\cite{Snipes2014Experiences} monitoring tool.  $Blaze$ logs events anonymously from developer actions in Visual Studio including menu commands, shortcut-keys, and source code editor actions such as moving the insertion carat and scrolling.  Table~\ref{fig:SampleEventData} shows a sample of the log data where each row contains a date and time (date not shown) for the event, a unique ID anonymously assigned to the developer, the event name recorded from Visual Studio, and a reference to the source file and location within the file.
 
 \begin{table}
@@ -31,4 +59,14 @@ Time-stamp & User & Event & Artifact \\
 	\label{fig:SampleEventData}
 \end{table}
 
-Developers at ABB volunteered to install $Blaze$ and record their actions in Visual Studio.  The data set evaluated for this study focuses on two developers with more than 3 months of data.  Because the data are anonymous, we have no demographic information on the developers to characterize their experience or knowledge.
+
+
+
+For code structure data we can use the following measures:
+\begin{itemize}
+	\item[] Number of other classes coupled to
+	\item[] Number of sub-classes
+	\item[] Number of Methods
+	\item[] Response for Class
+\end{itemize}
+
