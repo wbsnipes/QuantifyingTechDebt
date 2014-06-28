@@ -1,31 +1,4 @@
-
-
-We define the data framework as matching of comprehension data with code structure data at the module level.  
-%Aligning these two data sources at the module level allows us to ask questions of the intersected data set.  For example, we find the following questions interesting:
-
-%\begin{itemize}
-%	\item[] How much time does the developer spend understanding the code related to the change they are making?
-%	\item[] How many code elements does the developer need to review related to the change?
-%	\item[] How many dependent classes does the developer need to review related to the change?
-%	\item[] How much more time do developers have to spend comprehending code with higher levels of \TD?
-%	\item[] What code smells are correlated with developer code comprehension time?
-%	\item[] 
-%\end{itemize}
-
-
-The comprehension data we can define the following measures:
-\begin{itemize}
-	\item[] For a given session, the time required to comprehend the central class
-	\item[] Number of classes viewed in a session that are not the central class
-	\item[] For a given session, the number of unique classes visited that are not the central class
-	\item[] For classes that are not central to the session, the time required to comprehend them
-	\item[] Time per class viewed in the session for classes that are not central to the session
-
-\end{itemize}
-
-Developers at ABB volunteered to install $Blaze$ and record their actions in Visual Studio.  The data set evaluated for this study focuses on two developers with more than 3 months of data.  Because the data are anonymous, we have no demographic information on the developers to characterize their experience or knowledge.
-
-Define a session as moving time window where the developer is investigating a certain class.  Within the session, calculate the time spent viewing the class that defined the session (central class), and time spent viewing other classes.  Determine the count of visits to all classes within the session.   When sessions repeat, additional or fewer classes may be viewed by the developer, regardless they incur some comprehension effort which we add to the interest payments.  In each session, we determine the interest amount from the comprehension data quantifying it in hours.  
+In this section we define the specific measurements, data analysis and relationships for the framework to to meet the objectives of quantifying comprehension effort as related to interest payments on technical debt.
 
 Data for calculating the comprehension effort for developers comes from the $Blaze$~\cite{Snipes2014Experiences} monitoring tool.  $Blaze$ logs events anonymously from developer actions in Visual Studio including menu commands, shortcut-keys, and source code editor actions such as moving the insertion carat and scrolling.  Table~\ref{fig:SampleEventData} shows a sample of the log data where each row contains a date and time (date not shown) for the event, a unique ID anonymously assigned to the developer, the event name recorded from Visual Studio, and a reference to the source file and location within the file.
 
@@ -59,14 +32,41 @@ Time-stamp & User & Event & Artifact \\
 	\label{fig:SampleEventData}
 \end{table}
 
+Measuring comprehension effort from $Blaze$ monitoring logs requires extracting development sessions from the data that segment the stream of activity into periods where the developer is focused on a particular class.  We define a session as fixed length time window where the developer is investigating a certain class we call the central class.  The session time window begins with the first time the developer visits a certain class and ends with the last occurrence of a visit to the class within the fixed length time window.  The length of the time window is a variable we investigate in Section \ref{sec:AnalysisResults}.  
+\Comment{I think the previous 3 sentences define what we call a super block in our discussions}
+\Fix{See AnalysisResults question about number of sessions and consider moving the paragraph with that information here.}
 
-
-
-For code structure data we can use the following measures:
+Within a session, we calculate measurements related to comprehension effort as follows:
 \begin{itemize}
-	\item[] Number of other classes coupled to
-	\item[] Number of sub-classes
-	\item[] Number of Methods
-	\item[] Response for Class
+	\item[] $Number of sessions$ is the number of time window sessions formed by each class 
+	\item[] $Count Number of Class Edits$ is the number of times the class itself has been accessed inside a session 
+	\item[] $Count No of Other Class Accesses$ is the number of unique files visited in each session
+	\item[] $Time Spent in Class$ is the time spent in the class that forms the session
+	\item[] $Time Spent in Other Classes$ is the time spent in all other files in the session
 \end{itemize}
 
+\Fix{The following is unclear in the context of block and super block}
+When sessions repeat, additional or fewer classes may be viewed by the developer, regardless they incur some comprehension effort which we add to the interest payments.  In each session, we determine the interest amount from the comprehension data quantifying it in hours. 
+
+Developers at ABB volunteered to install $Blaze$ and record their actions in Visual Studio.  The data set evaluated for this study focuses on two developers with more than 3 months of data.  Because the data are anonymous, we have no demographic information on the developers to characterize their experience or knowledge.
+
+The framework matches the comprehension data with code structure data at the class level.  Therefore we consider class level code structure metrics whose definitions align with the measurements taken for comprehension.  Data for code structure is provided by the $Understand$ tool from Scientific Tool Works.  The framework used the following metrics for code structure data at the class level:
+
+\begin{itemize}
+	\item[] $Count Class Coupled$ is the number of other classes coupled to
+	\item[] $Count Class Base$ is the Number of immediate base classes
+	\item[] $Count Class Derived$ is the number of immediate sub-classes
+	\item[] $Count Declared Method$ is the number of local methods for the class
+\end{itemize}
+
+The class level metrics for code structure are related to comprehension metrics through the name of the source file in the $Blaze$ data corresponding to the class.  In cases where the source file contains multiple classes, the structure metrics were aggregated.
+
+Aligning these two data sources at the module level allows us to ask questions of the intersected data set.  For example, we find the following questions interesting:
+
+\begin{itemize}
+	\item[] How much time does the developer spend understanding the code related to the change they are making?
+	\item[] How many code elements does the developer need to review related to the change?
+	\item[] How many dependent classes does the developer need to review related to the change?
+	\item[] How correlated are comprehension effort metrics with code structure metrics?
+	\item[] As code structure metic values change, is the corresponding change in comprehension effort linear or non-linear.
+\end{itemize}
