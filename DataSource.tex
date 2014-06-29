@@ -33,20 +33,28 @@ Time-stamp & User & Event & Artifact \\
 \end{table}
 
 Measuring comprehension effort from $Blaze$ monitoring logs requires extracting development sessions from the data that segment the stream of activity into periods where the developer is focused on a particular class.  We define a session as fixed length time window where the developer is investigating a certain class we call the central class.  The session time window begins with the first time the developer visits a certain class and ends with the last occurrence of a visit to the class within the fixed length time window.  The length of the time window is a variable we investigate in Section \ref{sec:AnalysisResults}.  
-\Comment{I think the previous 3 sentences define what we call a super block in our discussions}
-\Fix{See AnalysisResults question about number of sessions and consider moving the paragraph with that information here.}
+\Comment{Will:I think the previous 3 sentences define what we call a super block in our discussions}
+\Fix{Will:See AnalysisResults question about number of sessions and consider moving the paragraph with that information here.}
 
 Within a session, we calculate measurements related to comprehension effort as follows:
 \begin{itemize}
 	\item[] $Number of sessions$ is the number of time window sessions formed by each class 
-	\item[] $Count Number of Class Edits$ is the number of times the class itself has been accessed inside a session 
-	\item[] $Count No of Other Class Accesses$ is the number of unique files visited in each session
+	\item[] $Count Number of Class Visits$ is the number of times the class itself has been accessed inside a session \Fix{Will:changed Edits to Visits..I think we mean visits?}
+	\item[] $Count Number of Other Class Accesses$ is the number of unique files visited in each session
 	\item[] $Time Spent in Class$ is the time spent in the class that forms the session
 	\item[] $Time Spent in Other Classes$ is the time spent in all other files in the session
 \end{itemize}
 
 \Fix{The following is unclear in the context of block and super block}
 When sessions repeat, additional or fewer classes may be viewed by the developer, regardless they incur some comprehension effort which we add to the interest payments.  In each session, we determine the interest amount from the comprehension data quantifying it in hours. 
+
+In Figure \ref{fig:SessionDataConcept} we show the session concept.  The session starts with the first visit to Class A under the green circle.  After that other classes C and E are visited including a visit to Class A again before the last visit to Class A under the red hexagon.  After the last visit the session time window expires.  The next session starts with a visit to Class A that begins a new 4 hour window.  In this visit classes C and E are visited as well before the developer returns to Class A.  Thus you see there are two sessions for Class A which contain a total of five visits to Class A, three visits to Class C and two visits to Class E.
+\begin{figure}
+	\centering
+	\includegraphics[width=3in]{SessionDataConcept.pdf}
+	\caption{Conceptual View of Sessions}
+	\label{fig:SessionDataConcept}
+\end{figure}
 
 Developers at ABB volunteered to install $Blaze$ and record their actions in Visual Studio.  The data set evaluated for this study focuses on two developers with more than 3 months of data.  Because the data are anonymous, we have no demographic information on the developers to characterize their experience or knowledge.
 
