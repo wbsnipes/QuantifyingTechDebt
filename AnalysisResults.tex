@@ -4,11 +4,11 @@
 	\caption{Class Structure Data}
 	\begin{tabular}{lrrrrr}
 	\toprule
-\textbf{Class Name} & \textbf{Count Class Base} & \textbf{Count Class Coupled} & \textbf{Count Class Derived} & \textbf{Count Line Code} \Fix{show as \%} & \textbf{Count Declared Method} \Fix{show as \%}\\
+\textbf{Class Name} & \textbf{Count Class Base} & \textbf{Count Class Coupled} & \textbf{Count Class Derived} & \textbf{Count Line Code} {(Top \% in project)} & \textbf{Count Declared Method} {(Top \% in project)}\\
 \midrule
-Class A & 10 & 272 & 1 & 15,040 (total = 1,820,084) & 247 (total = 96,977)\\
-Class B & 3 & 98 & 0 & 9,360 & 52\\
-Class C & 1 & 32 & 0 & 2,851 & 28\\
+Class A & 10 & 272 & 1 & 0.05\% & .01\%\\
+Class B & 3 & 98 & 0 & 0.12\% & 0.29\%\\
+Class C & 1 & 32 & 0 & 0.7\% & 5.2\%\\
 \bottomrule
 	\end{tabular}
 	\label{fig:ClassStructureAnalysisData}
@@ -17,14 +17,15 @@ Class C & 1 & 32 & 0 & 2,851 & 28\\
 \begin{table*}[!t]
     \renewcommand{\arraystretch}{1.3}
 	\centering
-	\caption{Class Data from Logs}
-	\begin{tabular}{llrrrrr}
+	\caption{Class Data from Logs For Developer X}
+	\begin{tabular}{lrrrrr}
 	\toprule
-\textbf{Developer Name} & \textbf{Class Name} & \textbf{\# Sessions} & \textbf{\# Class Visits} & \textbf{\# Other Class Accesses} & \textbf{Time Spent in Class} & \textbf{Time Spent in Other Classes}\\
+%\textbf{Developer Name} & 
+\textbf{Class Name} & \textbf{\# Sessions} & \textbf{\# Class Visits} & \textbf{\# Other Class Accesses} & \textbf{Time Spent in Class} & \textbf{Time Spent in Other Classes}\\
 \midrule
-Developer X & A & 74 & 294 & 78 & 39 hr.\ 34 min.\ 23 sec. & 16 hr.\ 39 min.\ 36 sec.\\
-Developer X & B & 32 & 88 & 52 & 2 hr.\ 54 min.\ 20 sec. & 8 hr.\ 54 min.\ 18 sec.\\
-Developer X & C & 28 & 77 & 52 & 4 hr.\ 28 min.\ 25 sec. & 9 hr.\ 15 min.\ 41 sec.\\
+A & 74 & 294 & 78 & 39 hr.\ 34 min.\ 23 sec. & 16 hr.\ 39 min.\ 36 sec.\\
+B & 32 & 88 & 52 & 2 hr.\ 54 min.\ 20 sec. & 8 hr.\ 54 min.\ 18 sec.\\
+C & 28 & 77 & 52 & 4 hr.\ 28 min.\ 25 sec. & 9 hr.\ 15 min.\ 41 sec.\\
 %Developer Y & P & 10 & 45 & 24 & 2 hr.\ 19 min.\ 13 sec. & 1 hr.\ 43 min.\ 12 sec.\\
 %Developer Y & Q & 7 & 12 & 20 & 24 min.\ 08 sec. & 2 hr.\ 36 min.\ 32 sec.\\
 %Developer Y & R & 5 & 15 & 16 & 53 min.\ 51 sec. & 40 min.\ 18 sec.\\
@@ -55,7 +56,9 @@ The $Blaze$ log for a developer includes all of the navigation activities perfor
 %\end{itemize}
 We observed that the change in the number of sessions for each class was small when switching between a 4-hour moving window and a 8-hour moving window. The small magnitude of this change indicates that developers do not often work in 8-hour windows, but rather tend to work in 4-hour windows. Moreover, the 8-hour moving window returned the same number of sessions as did the 12-hour and 16-hour windows. Thus, we decided to use the 4-hour sliding window for further analysis.
 
-Table~\ref{fig:ClassStructureAnalysisData} lists the structural code metrics for each of the classes that we have used for this study.  These code metrics were calculated for a project containing 9,888 classes. Class A had the largest $Count~Class~Coupled$ value among all the classes in the project. The other values for class A were all in the top 20 \Fix{Will:Perhaps express this as percent (like top 1\%} for the project. The large values for $Count~Line~Code$ and $Count~Declared~Method$ indicate class A may have the $Large~Class$ smell~\cite{Fowler_etal:1999} and suggest that it perhaps consumes a significant portion of the maintenance effort for the project. 
+Table~\ref{fig:ClassStructureAnalysisData} lists the structural code metrics for each of the classes that we have used for this study.  These code metrics were calculated for a project containing 9,888 classes. Class A had the largest $Count~Class~Coupled$ value among all the classes in the project. The other such code metrics for class A were all in the top 2\% when compared to all the classes in the project.
+% \Fix{Will:Perhaps express this as percent (like top 1\%} for the project. 
+The large values for $Count~Line~Code$ and $Count~Declared~Method$ indicate class A may have the $Large~Class$ smell~\cite{Fowler_etal:1999} and suggest that it perhaps consumes a significant portion of the maintenance effort for the project. 
 
 Table~\ref{fig:ClassAnalysisData} lists data for three classes worked on by the developer that we studied. The five rightmost columns list the values for the comprehension metrics that we defined to help quantify \TD. For developer X the number of sessions for class A is large, as are the numbers of (central) class visits and other class visits. This suggests that developer X visited class A often over a long period of time, and also visited other classes frequently while working on class A. The data show that developer X spent more than 39 hours working on class A and more than 16 hours on other classes during the 74 sessions for class A. The 16 hours that developer X spent during sessions for class A on other classes can be interpreted as the cost of comprehending class A, which can in turn be viewed as \TD.
 
@@ -63,6 +66,6 @@ The second row of the table shows that during the 32 sessions for class B, devel
 
 %Similar patterns can be seen in developer Y where each parameter is indicative of the fact that the considered class is indeed the central class and that the time spent navigating other classes has a significant impact in calculating \TD. 
 
-Considering both the structural code metrics and the comprehension metrics reveals that class A is large and is highly coupled to other classes in the project, and also reveals that the developer spent a large amount of time working on class A.\Fix{Something more needs to be written here.}
+Considering both the structural code metrics and the comprehension metrics reveals that class A is large and is highly coupled to other classes in the project, and also reveals that the developer spent a large amount of time working on class A. Our preliminary investigation of the code and comprehension metrics revealed several interesting results. When consider the values of $Count~Class~Coupled$, $\#~Other~Class~Accesses$, and $Time~Spent~in~Other~Classes$, we observe that for class A, which is the most highly coupled class in the project, $\#~Other~Class~Accesses$ and $Time~Spent~in~Other~Classes$ are both large. However, for classes B and C, we observe that the values of $\#~Other~Class~Accesses$ and $Time~Spent~in~Other~Classes$ are comparable, event though class C is less coupled than class B. Related to the $Large~Class$ smell, we observe that $\#~Sessions$, $\#~Class~Visits$, and $Time~Spent~in~Class$ are correlated with $Count~Line~Code$. Among all three classes, decreases in $Count~Line~Code$ correspond to decreases in the values of $\#~Sessions$ and $\#~Class~Visits$. 
 
 %When we look at the parameters that we obtained from the log together with the code metrics we generated for the files we can see how the high numbers of Class A can be seen in both code metrics as well as navigation data. The navigation data shows the time spent by a developer in editing and comprehending class A is on the higher end and the fact that the code metrics shows us that it is the highest coupled class and one of the longest in terms of lines of source code we understand one cause for the high effort spent maintaining Class A.\Fix{Something more needs to be written here but do not know what?}
