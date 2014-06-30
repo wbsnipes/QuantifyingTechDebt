@@ -13,6 +13,13 @@ Class B & 3 & 98 & 0 & 9360 & 52\\
 \hline
 Class C & 1 & 32 & 0 & 2851 & 28\\
 \hline
+%\hline\hline
+%Class A & 10 & 272 & 1 & 15040(total = 1820084) & 247(total = 96977)\\
+%\hline
+%Class B & 3 & 98 & 0 & 9360 & 52\\
+%\hline
+%Class C & 1 & 32 & 0 & 2851 & 28\\
+%\hline
 
 	\end{tabular}
 	\label{fig:ClassStructureAnalysisData}
@@ -36,7 +43,7 @@ Developer X & C & 28 & 77 & 52 & 4hours 28mins 25 secs & 9hours 15mins 41secs\\
 \hline
 Developer Y & P & 10 & 45 & 24 & 2hours 19mins 13 secs & 1hour 43mins 12secs\\
 \hline
-Developer Y & Q & 7 & 12 & 20 & 24mins 08 secs & 2hours 36mins 32secs\\
+Developer Y & Q & 7 & 12 & 20 & 24mins 08secs & 2hours 36mins 32secs\\
 \hline
 Developer Y & R & 5 & 15 & 16 & 53mins 51secs & 40mins 18secs\\
 \hline
@@ -47,8 +54,14 @@ Developer Y & R & 5 & 15 & 16 & 53mins 51secs & 40mins 18secs\\
 \end{center}
 
 As previously mentioned we first define sessions to investigate each class that a developer visits. We define session as a moving window time where developer is investigating a certain class. 
-\Fix{Will:The picture of sessions replaces these 2 sentences}When we define a session of X hours for a class Y we mean to say that starting from the first time the developer visits class Y while navigating we find the last time he visits the same class in X hours. For each session of class Y that we obtain we study the number of unique classes the developer has visited while in the session as well as the number of times the developer has visited the class Y itself within the session. 
-The classes central to a task will have a high count of the number of times the developer visits the class in a particular session and the\Fix{Will:This next statement "number of such sessions will also be high" confused me because we talked about super blocks and blocks before.  Perhaps starting a new sentence would allow more explanation.}number of such sessions will also be high. We also calculate the time spent by developer in the central class as well as the time spent by the developer spent in other classes in the session of the central class.The time factor gives us an estimation of how well the developer comprehends the class and other classes referenced in the session. We studied such sessions for a moving window of 4 hours, 8 hours, 12 hours and 16 hours. 
+%\Fix{Will:The picture of sessions replaces these 2 sentences}
+%When we define a session of X hours for a class Y we mean to say that starting from the first time the developer visits class Y while navigating we find the last time he visits the same class in X hours. For %each session of class Y that we obtain we study the number of unique classes the developer has visited while in the session as well as the number of times the developer has visited the class Y itself within %the session. 
+For each session we calculate the parameters previously mentioned. The classes central to a task will have a high count of the number of times the developer visits the class in a particular session 
+%and the
+%\Fix{Will:This next statement "number of such sessions will also be high" confused me because we talked about super blocks and blocks before.  Perhaps starting a new sentence would allow more %explanation.}
+%number of such sessions will also be high. 
+The count of the number of sessions will also be on the higher end for classes central to the task.
+We also calculate the time spent by developer in the central class as well as the time spent by the developer spent in other classes in the session of the central class.The time factor gives us an estimation of how well the developer comprehends the class and other classes referenced in the session. We studied such sessions for a moving window of 4 hours, 8 hours, 12 hours and 16 hours. 
 
 The data collected by the Blaze logs has all the navigation activities done by the developer in the IDE. It also has appropriate time outs for periods of inactivity in the IDE. We first filtered the log to select only the navigation activities related to classes as well all time outs and IDE exits. Next we calculated the time spent by the developer in the class. We obtained a list of such classes and the time spent by the user in each class. We observed there were instances when the developer accessed a class for less than a second and then switched to another class. We assumed that no useful comprehension can be done by the user in less than a second and attributed such class accesses to random clicks and removed all such entries. We then calculated various parameters that would help in identifying the central class as well the necessary classes for comprehending the central class.   We calculated the metrics for comprehension as defined in section \ref{sec:DataFramework}.
 
