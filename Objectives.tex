@@ -39,8 +39,6 @@ Table~\ref{fig:SampleEventData} shows a sample of the log data, where each row c
 \end{table}
 
 Our approach to analyzing the developer activity data was to establish sessions that segment the stream of activity into periods in which the developer is focused on a particular class. We define a session as fixed length time window where the developer is investigating a certain class that we call the central class.  The session time window begins the first time a developer visits a particular class and ends with the last time the developer visits that class within a fixed length time window. The length of the time window is a variable that we investigate in Section \ref{sec:AnalysisResults}.  
-%\Comment{Will:I think the previous 3 sentences define what we call a super block in our discussions}
-\Fix{Will:See AnalysisResults question about number of sessions and consider moving the paragraph with that information here.}
 
 Figure \ref{fig:SessionDataConcept} illustrates the session concept.  The session starts with the first visit to Class A under the green circle.  After that, other classes C and E are visited, including a visit to Class A again before the last visit to Class A under the red hexagon.  After the last visit, the session time window expires (assuming a fixed-time window).  The second session starts with a visit to Class A.  In this session, classes C and E are visited before the developer returns to Class A.  Thus, there are two sessions for Class A, in which there are a total of five visits to Class A, three visits to Class C, and two visits to Class E.
 
