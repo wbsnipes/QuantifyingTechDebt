@@ -1,15 +1,15 @@
 %\Fix{NK: I think that this section should be titled ``Overview'' and should start with a paragraph that defines what a ``session'' (or ``comprehension session'') is and provides a high-level description of how code smells and comprehension cost fit in (and relate to principal and interest).}
 
 %Within the proposed framework, we consider \TD to be dependent on the maintenance and evolution activity in the code base, meeting the criteria that \TD could result from a context shift requiring stable code to be revised~\cite{Ozkaya_etal:2012}.
-
-Similar to Nugroho et al.~\cite{Nugroho_etal:2011}, in which potential code maintainability issues are identified using static code metrics, we base principal estimation on class-level static code metrics provided by $Understand$.\footnote{\url{http://www.scitools.com}} In particular, the framework uses the following metrics:
-\begin{description}[font=\itshape\mdseries,leftmargin=.42\linewidth,style=sameline]
-    \item[Count~Class~Coupled] number of other classes coupled to
-    \item[Count~Class~Base] number of immediate base classes
-    \item[Count~Class~Derived] number of immediate sub-classes
-    \item[Count~Line~Code] number of lines in the class
-    \item[Count~Declared~Method] number of local methods in the class
-\end{description}
+The framework we propose combines related metrics from code structure and code comprehension data sources.  We selected some relevant code structure metrics related to maintainability and \TD using work by Nugroho et al.~\cite{Nugroho_etal:2011}, in which potential code maintainability issues are identified using static code metrics.  We use some of the class-level static code metrics provided by $Understand$.\footnote{\url{http://www.scitools.com}} to identify code that may have maintainability concerns related to effort required to comprehend the code. In particular, the framework uses the following metrics:
+\begin{itemize}
+    \item[] $Count Class Coupled$ is the number of other classes coupled to
+    \item[] $Count Class Base$ is the number of immediate base classes
+    \item[] $Count Class Derived$ is the number of immediate sub-classes
+    \item[] $Count Line Code$ is the number of lines in the class
+    \Fix{Will:why not add complexity?}
+    \item[] $Count Declared Method$ is the number of local methods for the class
+\end{itemize}
 
 These class-level code-structure metrics relate to the comprehension metrics on which we based interest estimation. We define low-level code comprehension metrics based on developer actions as they work on code inside of or related to a class.
 
@@ -39,11 +39,11 @@ Table~\ref{fig:SampleEventData} shows a sample of the log data, where each row c
     \label{fig:SampleEventData}
 \end{table}
 
-Our approach to analyzing the developer activity data was to establish sessions that segment the stream of activity into periods in which the developer is focused on a particular class. We define a session as fixed length time window where the developer is investigating a certain class that we call the \textit{central class}.  The session time window begins the first time a developer visits a particular class and ends with the last time the developer visits that class within a fixed length time window. The length of the time window is a variable that we investigate in Section \ref{sec:AnalysisResults}.  
+Our approach to analyzing the developer activity data was to establish sessions that segment the stream of activity into periods in which the developer is focused on a particular class. We define a session as fixed length time window where the developer is investigating a certain class that we call the central class.  The session time window begins the first time a developer visits a particular class and ends with the last time the developer visits that class within a fixed length time window. The length of the time window is a variable that we investigate in Section \ref{sec:AnalysisResults}.  
 %\Comment{Will:I think the previous 3 sentences define what we call a super block in our discussions}
 \Fix{Will:See AnalysisResults question about number of sessions and consider moving the paragraph with that information here.}
 
-Figure \ref{fig:SessionDataConcept} illustrates the session concept.  Session 1 starts with the first visit to Class A under the green circle.  After that, other classes C and E are visited. The last visit to Class A is shown under the red hexagon.  After the last visit, the session time window expires (assuming a fixed-time window).  Session 2 starts with a visit to Class A.  In this session, classes C and E are visited before the developer returns to Class A.  Thus, there are two sessions for Class A, in which there are a total of five visits to Class A, three visits to Class C, and two visits to Class E.
+Figure \ref{fig:SessionDataConcept} illustrates the session concept.  The session starts with the first visit to Class A under the green circle.  After that, other classes C and E are visited, including a visit to Class A again before the last visit to Class A under the red hexagon.  After the last visit, the session time window expires (assuming a fixed-time window).  The second session starts with a visit to Class A.  In this session, classes C and E are visited before the developer returns to Class A.  Thus, there are two sessions for Class A, in which there are a total of five visits to Class A, three visits to Class C, and two visits to Class E.
 
 \begin{figure}
     \centering
@@ -65,14 +65,23 @@ Within a session, we calculate metrics related to comprehension effort as follow
 \end{description}
 
 The class-level metrics for code structure are related to comprehension metrics through the name of the source file in the $Blaze$ data corresponding to the class.  In cases where the source file contains multiple classes, the structure metrics were aggregated.
-Aligning the two data sources at the class level allows us to ask questions of the intersected data set. For example, we could investigate the impact of code smells on interest payments. Questions\ldots\Fix{TODO(Will)}
-\begin{itemize}
-    \item[] How much time does the developer spend understanding the code related to the change they are making?
-    \item[] How many code elements does the developer need to review related to the change?
-    \item[] How many dependent classes does the developer need to review related to the change?
-    \item[] How correlated are comprehension effort metrics with code structure metrics?
-    \item[] As code-structure metric values change, is the corresponding change in comprehension effort linear or non-linear.
-\end{itemize}
+
+Aligning the two data sources at the class level allows us to ask questions of the intersected data set. For example we could investigate in future research results, the impact of code smells~\cite{Fowler_etal:1999} on interest payments. Questions\ldots\Fix{TODO(Will)}
+We can investigate how much the Feature Envy smell as measured by $Class~Coupled$ has some effect on $\#~Other~Class~Accesses$ and $Time~Spent~in~Other~Classes$ as measures of comprehension effort.  
+%We can estimate the level of Shotgun Surgery performed by measuring $Count Class Coupled$ and $Count Class Derived$ combined with the comprehension data of $\# Other Class Accesses$ and $Time Spent in Other Classes$.  
+We can estimate the impact of the Large Class smell as measured by $Count~Line~Code$ on the comprehension metrics $\#~Class~Visits$, $\#~Sessions$, and $Time~Spent~in~Class$?
+
+
+By defining the measurement framework, the calculation of interest payments on \TD related to code structure will depend on understanding the correlation between code structural metrics and code comprehension effort metrics described herein.  The study of this correlation is the objective of applying this framework in future research.
+
+%\begin{itemize}
+%    \item[] How much time does the developer spend understanding the code related to the change they are making?
+%    \item[] How many code elements does the developer need to review related to the change?
+%    \item[] How many dependent classes does the developer need to review related to the change?
+%    \item[] How correlated are comprehension effort metrics with code structure metrics?
+%    \item[] As code-structure metric values change, is the corresponding change in comprehension effort linear or non-linear.
+%\end{itemize}
+
 
 %The comprehension effort relates to \TD through occurrence of code smells in one dimension.  For example, consider the code smell of Feature Envy where a method makes too many calls to other classes to obtain data or functionality.  By calculating from $Blaze$ data the number \Fix{NK: The number of what?} and time spent visiting other classes within a session \Fix{The concept of a session needs to be introduced/defined in the previous paragraph}, we can estimate the developer effort required to understand dependencies.  The total count of visits to other classes relates to the Feature Envy smell or Inappropriate Intimacy. Further, the number of (unique) classes visited in each session could  relate to the Shotgun Surgery smell, particularly when multiple classes are edited in a session. The time spent visiting classes and time per class visited may relate to the Long Class smell~\cite{Fowler_etal:1999}.  
 
