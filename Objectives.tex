@@ -65,14 +65,23 @@ Within a session, we calculate measurements related to comprehension effort as f
 \end{itemize}
 
 The class-level metrics for code structure are related to comprehension metrics through the name of the source file in the $Blaze$ data corresponding to the class.  In cases where the source file contains multiple classes, the structure metrics were aggregated.
-Aligning the two data sources at the class level allows us to ask questions of the intersected data set. For example, we could investigate the impact of code smells on interest payments. Questions\ldots\Fix{TODO(Will)}
-\begin{itemize}
-    \item[] How much time does the developer spend understanding the code related to the change they are making?
-    \item[] How many code elements does the developer need to review related to the change?
-    \item[] How many dependent classes does the developer need to review related to the change?
-    \item[] How correlated are comprehension effort metrics with code structure metrics?
-    \item[] As code-structure metric values change, is the corresponding change in comprehension effort linear or non-linear.
-\end{itemize}
+
+Aligning the two data sources at the class level allows us to ask questions of the intersected data set. For example, we could investigate the impact of code smells~\cite{Fowler_etal:1999} on interest payments. Questions\ldots\Fix{TODO(Will)}
+We can investigate how much the magnitude of the Feature Envy smell as measured by $Class Coupled$ affects $\# Other Class Accesses$ and $Time Spent in Other Classes$ measures of comprehension effort.  
+We can estimate the level of Shotgun Surgery performed by measuring $Count Class Coupled$ and $Count Class Derived$ combined with the comprehension data of $\# Other Class Accesses$ and $Time Spent in Other Classes$.  
+We can estimate the impact of the Large Class smell as measured by $Count Line Code$ on the comprehension metrics $\# Class Visits$, $\# Sessions$, and $Time Spent in Class$?
+
+
+By defining the measurement framework, the calculation of interest payments on \TD related to code structure will depend on understanding the correlation between code structure metrics and code comprehension effort metrics described herein.  The study of this correlation is the objective of applying this framework in future research.
+
+%\begin{itemize}
+%    \item[] How much time does the developer spend understanding the code related to the change they are making?
+%    \item[] How many code elements does the developer need to review related to the change?
+%    \item[] How many dependent classes does the developer need to review related to the change?
+%    \item[] How correlated are comprehension effort metrics with code structure metrics?
+%    \item[] As code-structure metric values change, is the corresponding change in comprehension effort linear or non-linear.
+%\end{itemize}
+
 
 %The comprehension effort relates to \TD through occurrence of code smells in one dimension.  For example, consider the code smell of Feature Envy where a method makes too many calls to other classes to obtain data or functionality.  By calculating from $Blaze$ data the number \Fix{NK: The number of what?} and time spent visiting other classes within a session \Fix{The concept of a session needs to be introduced/defined in the previous paragraph}, we can estimate the developer effort required to understand dependencies.  The total count of visits to other classes relates to the Feature Envy smell or Inappropriate Intimacy. Further, the number of (unique) classes visited in each session could  relate to the Shotgun Surgery smell, particularly when multiple classes are edited in a session. The time spent visiting classes and time per class visited may relate to the Long Class smell~\cite{Fowler_etal:1999}.  
 
