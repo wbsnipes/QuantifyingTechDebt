@@ -1,6 +1,6 @@
 In this section we define the specific measurements, data analysis and relationships for the framework to to meet the objectives of quantifying comprehension effort as related to interest payments on technical debt.
 
-Data for calculating the comprehension effort for developers comes from the $Blaze$~\cite{Snipes2014Experiences} monitoring tool.  $Blaze$ logs events anonymously from developer actions in Visual Studio including menu commands, shortcut-keys, and source code editor actions such as moving the insertion carat and scrolling.  Table~\ref{fig:SampleEventData} shows a sample of the log data where each row contains a date and time (date not shown) for the event, a unique ID anonymously assigned to the developer, the event name recorded from Visual Studio, and a reference to the source file and location within the file.
+Data for calculating the comprehension effort for developers comes from the $Blaze$~\cite{Snipes2014Experiences} monitoring tool.  $Blaze$ logs events anonymously from developer actions in Visual Studio including menu commands, shortcut-keys, and source code editor actions such as moving the insertion carat and scrolling.  Developers at ABB volunteered to install $Blaze$ and record their actions in Visual Studio.  The data set evaluated for this study focuses on two developers with more than 3 months of data.  Table~\ref{fig:SampleEventData} shows a sample of the log data where each row contains a date and time (date not shown) for the event, a unique ID anonymously assigned to the developer, the event name recorded from Visual Studio, and a reference to the source file and location within the file.
 
 \begin{table}
 	\centering
@@ -36,6 +36,18 @@ Measuring comprehension effort from $Blaze$ monitoring logs requires extracting 
 \Comment{Will:I think the previous 3 sentences define what we call a super block in our discussions}
 \Fix{Will:See AnalysisResults question about number of sessions and consider moving the paragraph with that information here.}
 
+In Figure \ref{fig:SessionDataConcept} we show the session concept.  The session starts with the first visit to Class A under the green circle.  After that other classes C and E are visited including a visit to Class A again before the last visit to Class A under the red hexagon.  After the last visit the session time window expires.  The next session starts with a visit to Class A that begins a new 4 hour window.  In this visit classes C and E are visited as well before the developer returns to Class A.  Thus you see there are two sessions for Class A which contain a total of five visits to Class A, three visits to Class C and two visits to Class E.
+\begin{figure}
+	\centering
+	\includegraphics[width=3in]{SessionDataConcept.pdf}
+	\caption{Conceptual View of Sessions}
+	\label{fig:SessionDataConcept}
+\end{figure}
+
+\Fix{The following is unclear in the context of block and super block}
+When sessions repeat, additional or fewer classes may be viewed by the developer, regardless they incur some comprehension effort which we add to the interest payments.  In each session, we determine the interest amount from the comprehension data quantifying it in hours. 
+
+
 Within a session, we calculate measurements related to comprehension effort as follows:
 \begin{itemize}
 	\item[] $Number of sessions$ is the number of time window sessions formed by each class 
@@ -45,18 +57,7 @@ Within a session, we calculate measurements related to comprehension effort as f
 	\item[] $Time Spent in Other Classes$ is the time spent in all other files in the session
 \end{itemize}
 
-\Fix{The following is unclear in the context of block and super block}
-When sessions repeat, additional or fewer classes may be viewed by the developer, regardless they incur some comprehension effort which we add to the interest payments.  In each session, we determine the interest amount from the comprehension data quantifying it in hours. 
-
-In Figure \ref{fig:SessionDataConcept} we show the session concept.  The session starts with the first visit to Class A under the green circle.  After that other classes C and E are visited including a visit to Class A again before the last visit to Class A under the red hexagon.  After the last visit the session time window expires.  The next session starts with a visit to Class A that begins a new 4 hour window.  In this visit classes C and E are visited as well before the developer returns to Class A.  Thus you see there are two sessions for Class A which contain a total of five visits to Class A, three visits to Class C and two visits to Class E.
-\begin{figure}
-	\centering
-	\includegraphics[width=3in]{SessionDataConcept.pdf}
-	\caption{Conceptual View of Sessions}
-	\label{fig:SessionDataConcept}
-\end{figure}
-
-Developers at ABB volunteered to install $Blaze$ and record their actions in Visual Studio.  The data set evaluated for this study focuses on two developers with more than 3 months of data.  Because the data are anonymous, we have no demographic information on the developers to characterize their experience or knowledge.
+  
 
 The framework matches the comprehension data with code structure data at the class level.  Therefore we consider class level code structure metrics whose definitions align with the measurements taken for comprehension.  Data for code structure is provided by the $Understand$ tool from Scientific Tool Works.  The framework used the following metrics for code structure data at the class level:
 
