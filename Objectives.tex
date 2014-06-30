@@ -54,18 +54,18 @@ Figure \ref{fig:SessionDataConcept} illustrates the session concept.  The sessio
 %\Fix{The following is unclear in the context of block and super block}
 %When there are multiple sessions for a class, the sessions may involve visits to different sets of other classes. Regardless, they incur some comprehension effort which we add to the interest payments.  For each session we determine the interest payment from the comprehension data quantifying it in hours. 
 
-Within a session, we calculate measurements related to comprehension effort as follows:
-\begin{itemize}
-    \item[] $\# Sessions$ is the number of time window sessions formed by each class 
-    \item[] $\# Class Visits$ is the number of times the class itself has been accessed inside a session
-    \item[] $\# Other Class Accesses$ is the number of unique files visited in each session
-    \item[] $Time Spent in Class$ is the time spent in the class that forms the session
-    \item[] $Time Spent in Other Classes$ is the time spent in all other files in the session
-\end{itemize}
+Within a session, we calculate metrics related to comprehension effort as follows:
+\begin{description}[font=\itshape\mdseries,style=nextline]
+    \item[\#~Sessions] number of time-window sessions for each class 
+    \item[\#~Class~Visits] number of times the central class is visited in a session
+    \item[\#~Other~Class~Accesses] number of unique (non-central) classes visited in a session
+    \item[Time~Spent~in~Class] time spent in the central class for a session
+    \item[Time~Spent~in~Other~Classes] time spent in all other classes in a session
+\end{description}
 
 The class-level metrics for code structure are related to comprehension metrics through the name of the source file in the $Blaze$ data corresponding to the class.  In cases where the source file contains multiple classes, the structure metrics were aggregated.
 
-Aligning the two data sources at the class level allows us to ask questions of the intersected data set. For example we could investigate in future research results, the impact of code smells~\cite{Fowler_etal:1999} on interest payments. 
+
 We can investigate how much the Feature Envy smell  where a method makes too many calls to other classes to obtain data or functionality.  We assess the level of Feature Envy using using the $Class Coupled$ static metric and quantify the effect that has on comprehension using the $\# Other Class Accesses$ metric and evaluate the effort this smell generates using the $Time Spent in Other Classes$ measure.  
 %We can estimate the level of Shotgun Surgery performed by measuring $Count Class Coupled$ and $Count Class Derived$ combined with the comprehension data of $\# Other Class Accesses$ and $Time Spent in Other Classes$.  
 We can estimate the impact of the Large Class smell, where a class is larger than typical, by using the $Count Line Code$ static metric.  The assess the effect on developer comprehension, we can use the metrics $\# Class Visits$, $\# Sessions$ to determine the difference in navigation behavior and evaluate the $Time Spent in Class$ to assess the total effort resulting from the smell.
