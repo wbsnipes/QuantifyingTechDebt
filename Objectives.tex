@@ -7,7 +7,6 @@ The framework we propose combines related metrics from code structure and code c
     \item[] $Count Class Base$ is the number of immediate base classes
     \item[] $Count Class Derived$ is the number of immediate sub-classes
     \item[] $Count Line Code$ is the number of lines in the class
-    \Fix{Will:why not add complexity?}
     \item[] $Count Declared Method$ is the number of local methods for the class
 \end{itemize}
 
@@ -66,13 +65,12 @@ Within a session, we calculate measurements related to comprehension effort as f
 
 The class-level metrics for code structure are related to comprehension metrics through the name of the source file in the $Blaze$ data corresponding to the class.  In cases where the source file contains multiple classes, the structure metrics were aggregated.
 
-Aligning the two data sources at the class level allows us to ask questions of the intersected data set. For example we could investigate in future research results, the impact of code smells~\cite{Fowler_etal:1999} on interest payments. Questions\ldots\Fix{TODO(Will)}
-We can investigate how much the Feature Envy smell as measured by $Class Coupled$ has some effect on $\# Other Class Accesses$ and $Time Spent in Other Classes$ as measures of comprehension effort.  
+Aligning the two data sources at the class level allows us to ask questions of the intersected data set. For example we could investigate in future research results, the impact of code smells~\cite{Fowler_etal:1999} on interest payments. 
+We can investigate how much the Feature Envy smell  where a method makes too many calls to other classes to obtain data or functionality.  We assess the level of Feature Envy using using the $Class Coupled$ static metric and quantify the effect that has on comprehension using the $\# Other Class Accesses$ metric and evaluate the effort this smell generates using the $Time Spent in Other Classes$ measure.  
 %We can estimate the level of Shotgun Surgery performed by measuring $Count Class Coupled$ and $Count Class Derived$ combined with the comprehension data of $\# Other Class Accesses$ and $Time Spent in Other Classes$.  
-We can estimate the impact of the Large Class smell as measured by $Count Line Code$ on the comprehension metrics $\# Class Visits$, $\# Sessions$, and $Time Spent in Class$?
+We can estimate the impact of the Large Class smell, where a class is larger than typical, by using the $Count Line Code$ static metric.  The assess the effect on developer comprehension, we can use the metrics $\# Class Visits$, $\# Sessions$ to determine the difference in navigation behavior and evaluate the $Time Spent in Class$ to assess the total effort resulting from the smell.
 
-
-By defining the measurement framework, the calculation of interest payments on \TD related to code structure will depend on understanding the correlation between code structure metrics and code comprehension effort metrics described herein.  The study of this correlation is the objective of applying this framework in future research.
+By defining the measurement framework, the calculation of interest payments on \TD related to code structure will use time spent measurements for classes with static metrics that indicate code is difficult to maintain or contains smells.  Thus static metrics will indicate the possible presence of \TD in a class and comprehension effort metrics will quantify the effort to comprehend those classes. The study of correlation between static metrics and comprehension effort is planned for future research.
 
 %\begin{itemize}
 %    \item[] How much time does the developer spend understanding the code related to the change they are making?
