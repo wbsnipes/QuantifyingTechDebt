@@ -1,16 +1,9 @@
 \documentclass[conference]{IEEEtran}
 
-\makeatletter
-% IEEEtran.cls defines \labelindent for backward compatibility reasons
-% Undefine \labelindent to allow the use of package enumitem
-\let\labelindent\relax
-\makeatother
-
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{cite}
 \usepackage{comment}
-\usepackage{enumitem}
 \usepackage{fixltx2e}
 \usepackage{url}
 \usepackage{url}
@@ -56,8 +49,9 @@ Technical debt; program comprehension; static analysis
 \input{Motivation}
 
 \section{Framework}
-\input{Objectives}
 \label{sec:DataFramework}
+\input{Objectives}
+
 %\input{DataSource}
 
 \section{Analysis}

@@ -2,27 +2,6 @@
     \renewcommand{\arraystretch}{1.3}
 	\centering
 	\caption{Class Structure Data}
-<<<<<<< HEAD
-	\begin{tabular}{|l|l|l|l|l|l|}
-	\hline
-
-Class Name & Count Class Base & Count Class Coupled & Count Class Derived & Count Line Code \Fix{show as \%} & Count Declared Method\Fix{show as \%}\\
-\hline\hline
-Class A & 10 & 272 & 1 & 15040 & 247\\
-\hline
-Class B & 3 & 98 & 0 & 9360 & 52\\
-\hline
-Class C & 1 & 32 & 0 & 2851 & 28\\
-\hline
-%\hline\hline
-%Class A & 10 & 272 & 1 & 15040(total = 1820084) & 247(total = 96977)\\
-%\hline
-%Class B & 3 & 98 & 0 & 9360 & 52\\
-%\hline
-%Class C & 1 & 32 & 0 & 2851 & 28\\
-%\hline
-
-=======
 	\begin{tabular}{lrrrrr}
 	\toprule
 \textbf{Class Name} & \textbf{Count Class Base} & \textbf{Count Class Coupled} & \textbf{Count Class Derived} & \textbf{Count Line Code} \Fix{show as \%} & \textbf{Count Declared Method} \Fix{show as \%}\\
@@ -31,7 +10,6 @@ Class A & 10 & 272 & 1 & 15,040 & 247\\
 Class B & 3 & 98 & 0 & 9,360 & 52\\
 Class C & 1 & 32 & 0 & 2,851 & 28\\
 \bottomrule
->>>>>>> origin/master
 	\end{tabular}
 	\label{fig:ClassStructureAnalysisData}
 \end{table*}
@@ -40,26 +18,6 @@ Class C & 1 & 32 & 0 & 2,851 & 28\\
     \renewcommand{\arraystretch}{1.3}
 	\centering
 	\caption{Class Data from Logs}
-<<<<<<< HEAD
-	\begin{tabular}{|l|l|l|l|l|l|l|}
-	\hline
-
-Developer Name & Class Name & No Of sessions &Count No of Class Visits & Count No of Other Class Accesses & Time Spent in Class & Time Spent in Other Classes\\
-\hline\hline
-Developer X & A & 74 & 294 & 78 & 39hours 34mins 23 secs & 16hours 39mins 36secs\\
-\hline
-Developer X & B & 32 & 88 & 52 & 2hours 54mins 20 secs & 8hours 54mins 18secs\\
-\hline
-Developer X & C & 28 & 77 & 52 & 4hours 28mins 25 secs & 9hours 15mins 41secs\\
-\hline
-Developer Y & P & 10 & 45 & 24 & 2hours 19mins 13 secs & 1hour 43mins 12secs\\
-\hline
-Developer Y & Q & 7 & 12 & 20 & 24mins 08secs & 2hours 36mins 32secs\\
-\hline
-Developer Y & R & 5 & 15 & 16 & 53mins 51secs & 40mins 18secs\\
-\hline
-
-=======
 	\begin{tabular}{llrrrrr}
 	\toprule
 \textbf{Developer Name} & \textbf{Class Name} & \textbf{\# Sessions} & \textbf{\# Class Visits} & \textbf{\# Other Class Accesses} & \textbf{Time Spent in Class} & \textbf{Time Spent in Other Classes}\\
@@ -67,24 +25,17 @@ Developer Y & R & 5 & 15 & 16 & 53mins 51secs & 40mins 18secs\\
 Developer X & A & 74 & 294 & 78 & 39 hr.\ 34 min.\ 23 sec. & 16 hr.\ 39 min.\ 36 sec.\\
 Developer X & B & 32 & 88 & 52 & 2 hr.\ 54 min.\ 20 sec. & 8 hr.\ 54 min.\ 18 sec.\\
 Developer X & C & 28 & 77 & 52 & 4 hr.\ 28 min.\ 25 sec. & 9 hr.\ 15 min.\ 41 sec.\\
-Developer Y & P & 10 & 45 & 24 & 2 hr.\ 19 min.\ 13 sec. & 1 hr.\ 43 min.\ 12 sec.\\
-Developer Y & Q & 7 & 12 & 20 & 24 min.\ 08 sec. & 2 hr.\ 36 min.\ 32 sec.\\
-Developer Y & R & 5 & 15 & 16 & 53 min.\ 51 sec. & 40 min.\ 18 sec.\\
+%Developer Y & P & 10 & 45 & 24 & 2 hr.\ 19 min.\ 13 sec. & 1 hr.\ 43 min.\ 12 sec.\\
+%Developer Y & Q & 7 & 12 & 20 & 24 min.\ 08 sec. & 2 hr.\ 36 min.\ 32 sec.\\
+%Developer Y & R & 5 & 15 & 16 & 53 min.\ 51 sec. & 40 min.\ 18 sec.\\
 \bottomrule
->>>>>>> origin/master
 	\end{tabular}
 	\label{fig:ClassAnalysisData}
 \end{table*}
 
 As previously mentioned we first define sessions to investigate each class that a developer visits. We define session as a moving window time where developer is investigating a certain class. 
-%\Fix{Will:The picture of sessions replaces these 2 sentences}
-%When we define a session of X hours for a class Y we mean to say that starting from the first time the developer visits class Y while navigating we find the last time he visits the same class in X hours. For %each session of class Y that we obtain we study the number of unique classes the developer has visited while in the session as well as the number of times the developer has visited the class Y itself within %the session. 
-For each session we calculate the parameters previously mentioned. The classes central to a task will have a high count of the number of times the developer visits the class in a particular session 
-%and the
-%\Fix{Will:This next statement "number of such sessions will also be high" confused me because we talked about super blocks and blocks before.  Perhaps starting a new sentence would allow more %explanation.}
-%number of such sessions will also be high. 
-The count of the number of sessions will also be on the higher end for classes central to the task.
-We also calculate the time spent by developer in the central class as well as the time spent by the developer spent in other classes in the session of the central class.The time factor gives us an estimation of how well the developer comprehends the class and other classes referenced in the session. We studied such sessions for a moving window of 4 hours, 8 hours, 12 hours and 16 hours. 
+\Fix{Will:The picture of sessions replaces these 2 sentences}When we define a session of X hours for a class Y we mean to say that starting from the first time the developer visits class Y while navigating we find the last time he visits the same class in X hours. For each session of class Y that we obtain we study the number of unique classes the developer has visited while in the session as well as the number of times the developer has visited the class Y itself within the session. 
+The classes central to a task will have a high count of the number of times the developer visits the class in a particular session and the\Fix{Will:This next statement "number of such sessions will also be high" confused me because we talked about super blocks and blocks before.  Perhaps starting a new sentence would allow more explanation.}number of such sessions will also be high. We also calculate the time spent by developer in the central class as well as the time spent by the developer spent in other classes in the session of the central class.The time factor gives us an estimation of how well the developer comprehends the class and other classes referenced in the session. We studied such sessions for a moving window of 4 hours, 8 hours, 12 hours and 16 hours. 
 
 The data collected by the Blaze logs has all the navigation activities done by the developer in the IDE. It also has appropriate time outs for periods of inactivity in the IDE. We first filtered the log to select only the navigation activities related to classes as well all time outs and IDE exits. Next we calculated the time spent by the developer in the class. We obtained a list of such classes and the time spent by the user in each class. We observed there were instances when the developer accessed a class for less than a second and then switched to another class. We assumed that no useful comprehension can be done by the user in less than a second and attributed such class accesses to random clicks and removed all such entries. We then calculated various parameters that would help in identifying the central class as well the necessary classes for comprehending the central class.   We calculated the metrics for comprehension as defined in section \ref{sec:DataFramework}.
 
@@ -103,7 +54,7 @@ Table~\ref{fig:ClassStructureAnalysisData} refers to the structural analysis of 
 Table~\ref{fig:ClassAnalysisData} shows data for each developer that we investigated. We present 3 classes for each of the developers. Each column represents the 5 parameters we defined to be useful in quantifying the \TD. As you can see for developer X we observe a very high count of the number of sessions as well as high counts in number of class edits and number of other class accesses for Class A. This suggests that the developer referenced Class A over a long period of time and very frequently. The developer also frequently referred to other classes while working on Class A. The data shows that the developer spent more than 39 hours working on Class A and more than 16 hours referencing other classes. The 16 hours the developer spent on other files can be interpreted as a cost of comprehending class A that can be viewed as  \TD. 
 
 Similarly when we see Class B we see that developer X spent nearly 3 hours on Class B but spent nearly 9 hours referencing other classes. This indicates that the developer spent 3 times the time actually spent on the central class in other classes. Only taking time as a factor cannot lead to such conclusions and we need to make sure that the class that we consider as the session is central to the task at hand. In this case the developer has 32 such sessions of Class B where he has also referenced Class B 88 times in these sessions. We can safely say that the developer keeps coming back to class B and thus it must be central to the task. 
-
-Similar patterns can be seen in developer Y where each parameter is indicative of the fact that the considered class is indeed the central class and that the time spent navigating other classes has a significant impact in calculating \TD. 
+%
+%Similar patterns can be seen in developer Y where each parameter is indicative of the fact that the considered class is indeed the central class and that the time spent navigating other classes has a significant impact in calculating \TD. 
 
 When we look at the parameters that we obtained from the log together with the code metrics we generated for the files we can see how the high numbers of Class A can be seen in both code metrics as well as navigation data. The navigation data shows the time spent by a developer in editing and comprehending class A is on the higher end and the fact that the code metrics shows us that it is the highest coupled class and one of the longest in terms of lines of source code we understand one cause for the high effort spent maintaining Class A.\Fix{Something more needs to be written here but do not know what?}
