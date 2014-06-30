@@ -44,6 +44,12 @@ For each session we calculate the comprehension metrics listed in Section~\ref{s
 %number of such sessions will also be high. 
 %We also calculate the time spent by developer in the central class as well as the time spent by the developer spent in other classes in the session of the central class. The time factor gives us an estimation of how well the developer comprehends the class and other classes referenced in the session. We studied such sessions for a moving window of 4 hours, 8 hours, 12 hours and 16 hours. 
 
+\begin{figure}
+\includegraphics[width=\columnwidth]{ForPaper}
+\caption{Time Spent Vs Class Name}
+\label{fig:ForPaper}
+\end{figure}
+
 The $Blaze$ log for a developer includes all of the navigation activities performed by the developer in the IDE, as well as time-outs for periods of inactivity. We first filtered each developer log, retaining only navigation activities related to classes, time-outs, and IDE exits. Next we calculated the time spent by the developer in each class. We observed that there were instances when the developer visited a class for less than one second before switching to another class. Working on the assumption that the developer could not attain any additional understanding in less than a second,  we attributed such class visits to random clicks and removed all such log entries. We then calculated various parameters to help in identifying the central class, as well the other classes necessary for comprehending the central class.   Finally, we calculated the comprehension metrics defined in Section~\ref{sec:DataFramework}.
 
 %For each sliding window size we calculated the following parameters:
@@ -71,3 +77,5 @@ Considering both the structural code metrics and the comprehension metrics revea
 %When we look at the parameters that we obtained from the log together with the code metrics we generated for the files we can see how the high numbers of Class A can be seen in both code metrics as well as navigation data. The navigation data shows the time spent by a developer in editing and comprehending class A is on the higher end and the fact that the code metrics shows us that it is the highest coupled class and one of the longest in terms of lines of source code we understand one cause for the high effort spent maintaining Class A.\Fix{Something more needs to be written here but do not know what?}
 
 Combining the $Time Spent in Class$ and the $Time Spent in Other Classes$ data for Class A, we estimate the interest payments on that class as 45 minutes per session spent comprehending Class A and related classes.  Against the average comprehension time per session we see this is an increase of x minutes per session meaning that y minutes can be attributed to the technical debt in that class.  If we consider the technical debt in Class B, we calculate 22 minutes per session which against the average of x minutes per session results in y minutes attributable to technical debt.
+
+Figure ~\ref{fig:ForPaper}shows a graph between the time spent in class,time spent in other classes vs the class being considered. We ordered the data in descending order of time spent in the class. As you can see there is a class E where the time spent in other classes while in session is much more than the time spent in the class itself. This shows the fact that there are many times when the time spent comprehending other classes is much more than the time spent in the class itself. 
