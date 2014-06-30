@@ -4,11 +4,11 @@
 	\caption{Class Structure Data}
 	\begin{tabular}{lrrrrr}
 	\toprule
-\textbf{Class Name} & \textbf{Count Class Base} & \textbf{Count Class Coupled} & \textbf{Count Class Derived} & \textbf{Count Line Code} {(Top \% in project)} & \textbf{Count Declared Method} {(Top \% in project)}\\
+\textbf{Class} & \textbf{Count Class Base} & \textbf{Count Class Coupled} & \textbf{Count Class Derived} & \textbf{Count Line Code} {(Top \% in project)} & \textbf{Count Declared Method} {(Top \% in project)}\\
 \midrule
-Class A & 10 & 272 & 1 & 0.05\% & .01\%\\
-Class B & 3 & 98 & 0 & 0.12\% & 0.29\%\\
-Class C & 1 & 32 & 0 & 0.7\% & 5.2\%\\
+ A & 10 & 272 & 1 & 0.05\% & 0.13\%\\
+ B & 3 & 98 & 0 & 0.12\% & 2.2\%\\
+ C & 1 & 32 & 0 & 0.7\% & 6.9\%\\
 \bottomrule
 	\end{tabular}
 	\label{fig:ClassStructureAnalysisData}
@@ -21,7 +21,7 @@ Class C & 1 & 32 & 0 & 0.7\% & 5.2\%\\
 	\begin{tabular}{lrrrrr}
 	\toprule
 %\textbf{Developer Name} & 
-\textbf{Class Name} & \textbf{\# Sessions} & \textbf{\# Class Visits} & \textbf{\# Other Class Accesses} & \textbf{Time Spent in Class} & \textbf{Time Spent in Other Classes}\\
+\textbf{Class} & \textbf{\# Sessions} & \textbf{\# Class Visits} & \textbf{\# Other Class Accesses} & \textbf{Time Spent in Class} & \textbf{Time Spent in Other Classes}\\
 \midrule
 A & 74 & 294 & 78 & 39 hr.\ 34 min.\ 23 sec. & 16 hr.\ 39 min.\ 36 sec.\\
 B & 32 & 88 & 52 & 2 hr.\ 54 min.\ 20 sec. & 8 hr.\ 54 min.\ 18 sec.\\
@@ -66,6 +66,8 @@ Table~\ref{fig:ClassStructureAnalysisData} lists the structural code metrics for
 % \Fix{Will:Perhaps express this as percent (like top 1\%} for the project. 
 The large values for $Count~Line~Code$ and $Count~Declared~Method$ indicate class A may have the $Large~Class$ smell~\cite{Fowler_etal:1999} and suggest that it perhaps consumes a significant portion of the maintenance effort for the project. 
 
+In our analysis of the code comprehension data, we show the distribution of time for the most active classes in the data set. Figure~\ref{fig:ForPaper} shows a graph of the time spent in class and time spent in other classes for the top 11 classes in the data set. We ordered the data in descending order of time spent in the class. While class A has the greatest time spent in the class and time spent in other classes, the ratio varies among other classes.  In class E  the time spent in other classes while in session is much more than the time spent in the class itself. This shows the fact that there are times when the time spent comprehending other classes is much more than the time spent in the class itself. 
+
 Table~\ref{fig:ClassAnalysisData} lists data for three classes worked on by the developer that we studied. The five rightmost columns list the values for the comprehension metrics that we defined to help quantify \TD. For developer X the number of sessions for class A is large, as are the numbers of (central) class visits and other class visits. This suggests that developer X visited class A often over a long period of time, and also visited other classes frequently while working on class A. The data show that developer X spent more than 39 hours working on class A and more than 16 hours on other classes during the 74 sessions for class A. The 16 hours that developer X spent during sessions for class A on other classes can be interpreted as the cost of comprehending class A, which can in turn be viewed as \TD.
 
 The second row of the table shows that during the 32 sessions for class B, developer X spent nearly 3 hours on class B but nearly 9 hours on other classes. This indicates that in the sessions for class B, the developer spent three times as long in other classes as he spent in the central class. Considering only time cannot lead to such conclusions, and we need to make sure that the central class for each session is actually central to the task at hand. In the case of class B, there are 32 sessions in which class B was visited 88 times. Thus, we can state that the developer continuously returns to class B, indicating that it is central to the task. 
@@ -78,4 +80,3 @@ Considering both the structural code metrics and the comprehension metrics revea
 
 Combining the $Time Spent in Class$ and the $Time Spent in Other Classes$ data for Class A, we estimate the interest payments on that class as 45 minutes per session spent comprehending Class A and related classes.  Against the average comprehension time per session we see this is an increase of x minutes per session meaning that y minutes can be attributed to the technical debt in that class.  If we consider the technical debt in Class B, we calculate 22 minutes per session which against the average of x minutes per session results in y minutes attributable to technical debt.
 
-Figure ~\ref{fig:ForPaper}shows a graph between the time spent in class,time spent in other classes vs the class being considered. We ordered the data in descending order of time spent in the class. As you can see there is a class E where the time spent in other classes while in session is much more than the time spent in the class itself. This shows the fact that there are many times when the time spent comprehending other classes is much more than the time spent in the class itself. 
