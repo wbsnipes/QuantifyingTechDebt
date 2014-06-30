@@ -3,13 +3,13 @@
 %Within the proposed framework, we consider \TD to be dependent on the maintenance and evolution activity in the code base, meeting the criteria that \TD could result from a context shift requiring stable code to be revised~\cite{Ozkaya_etal:2012}.
 
 Similar to Nugroho et al.~\cite{Nugroho_etal:2011}, in which potential code maintainability issues are identified using static code metrics, we base principal estimation on class-level static code metrics provided by $Understand$.\footnote{\url{http://www.scitools.com}} In particular, the framework uses the following metrics:
-\begin{itemize}
-    \item[] $Count Class Coupled$ is the number of other classes coupled to
-    \item[] $Count Class Base$ is the number of immediate base classes
-    \item[] $Count Class Derived$ is the number of immediate sub-classes
-    \item[] $Count Line Code$ is the number of lines in the class
-    \item[] $Count Declared Method$ is the number of local methods for the class
-\end{itemize}
+\begin{description}[font=\itshape\mdseries,leftmargin=.42\linewidth,style=sameline]
+    \item[Count~Class~Coupled] number of other classes coupled to
+    \item[Count~Class~Base] number of immediate base classes
+    \item[Count~Class~Derived] number of immediate sub-classes
+    \item[Count~Line~Code] number of lines in the class
+    \item[Count~Declared~Method] number of local methods in the class
+\end{description}
 
 These class-level code-structure metrics relate to the comprehension metrics on which we based interest estimation. We define low-level code comprehension metrics based on developer actions as they work on code inside of or related to a class.
 
@@ -39,11 +39,11 @@ Table~\ref{fig:SampleEventData} shows a sample of the log data, where each row c
     \label{fig:SampleEventData}
 \end{table}
 
-Our approach to analyzing the developer activity data was to establish sessions that segment the stream of activity into periods in which the developer is focused on a particular class. We define a session as fixed length time window where the developer is investigating a certain class that we call the central class.  The session time window begins the first time a developer visits a particular class and ends with the last time the developer visits that class within a fixed length time window. The length of the time window is a variable that we investigate in Section \ref{sec:AnalysisResults}.  
+Our approach to analyzing the developer activity data was to establish sessions that segment the stream of activity into periods in which the developer is focused on a particular class. We define a session as fixed length time window where the developer is investigating a certain class that we call the \textit{central class}.  The session time window begins the first time a developer visits a particular class and ends with the last time the developer visits that class within a fixed length time window. The length of the time window is a variable that we investigate in Section \ref{sec:AnalysisResults}.  
 %\Comment{Will:I think the previous 3 sentences define what we call a super block in our discussions}
 \Fix{Will:See AnalysisResults question about number of sessions and consider moving the paragraph with that information here.}
 
-Figure \ref{fig:SessionDataConcept} illustrates the session concept.  The session starts with the first visit to Class A under the green circle.  After that, other classes C and E are visited, including a visit to Class A again before the last visit to Class A under the red hexagon.  After the last visit, the session time window expires (assuming a fixed-time window).  The second session starts with a visit to Class A.  In this session, classes C and E are visited before the developer returns to Class A.  Thus, there are two sessions for Class A, in which there are a total of five visits to Class A, three visits to Class C, and two visits to Class E.
+Figure \ref{fig:SessionDataConcept} illustrates the session concept.  Session 1 starts with the first visit to Class A under the green circle.  After that, other classes C and E are visited. The last visit to Class A is shown under the red hexagon.  After the last visit, the session time window expires (assuming a fixed-time window).  Session 2 starts with a visit to Class A.  In this session, classes C and E are visited before the developer returns to Class A.  Thus, there are two sessions for Class A, in which there are a total of five visits to Class A, three visits to Class C, and two visits to Class E.
 
 \begin{figure}
     \centering
@@ -56,13 +56,13 @@ Figure \ref{fig:SessionDataConcept} illustrates the session concept.  The sessio
 %When there are multiple sessions for a class, the sessions may involve visits to different sets of other classes. Regardless, they incur some comprehension effort which we add to the interest payments.  For each session we determine the interest payment from the comprehension data quantifying it in hours. 
 
 Within a session, we calculate measurements related to comprehension effort as follows:
-\begin{itemize}
-    \item[] $\# Sessions$ is the number of time window sessions formed by each class 
-    \item[] $\# Class Visits$ is the number of times the class itself has been accessed inside a session
-    \item[] $\# Other Class Accesses$ is the number of unique files visited in each session
-    \item[] $Time Spent in Class$ is the time spent in the class that forms the session
-    \item[] $Time Spent in Other Classes$ is the time spent in all other files in the session
-\end{itemize}
+\begin{description}[font=\itshape\mdseries,style=nextline]
+    \item[\#~Sessions] number of time-window sessions for each class 
+    \item[\#~Class~Visits] number of times the central class is visited in a session
+    \item[\#~Other~Class~Accesses] number of unique (non-central) classes visited in a session
+    \item[Time~Spent~in~Class] time spent in the central class for a session
+    \item[Time~Spent~in~Other~Classes] time spent in all other classes in a session
+\end{description}
 
 The class-level metrics for code structure are related to comprehension metrics through the name of the source file in the $Blaze$ data corresponding to the class.  In cases where the source file contains multiple classes, the structure metrics were aggregated.
 
