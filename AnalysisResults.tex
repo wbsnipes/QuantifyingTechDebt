@@ -32,6 +32,7 @@ C & 28 & 77 & 52 & 4 hr.\ 28 min.\ 25 sec. & 9 hr.\ 15 min.\ 41 sec.\\
 \bottomrule
 	\end{tabular}
 	\label{fig:ClassAnalysisData}
+	\vspace*{-3mm}
 \end{table*}
 
 
@@ -48,6 +49,7 @@ For each session we calculate the comprehension metrics listed in Section~\ref{s
 \includegraphics[width=\columnwidth]{ForPaper}
 \caption{Time Spent Vs Class Name}
 \label{fig:ForPaper}
+\vspace*{-6mm}
 \end{figure}
 
 The $Blaze$ log for a developer includes all of the navigation activities performed by the developer in the IDE, as well as time-outs for periods of inactivity. We first filtered each developer log, retaining only navigation activities related to classes, time-outs, and IDE exits. Next we calculated the time spent by the developer in each class. We observed that there were instances when the developer visited a class for less than one second before switching to another class. Working on the assumption that the developer could not attain any additional understanding in less than a second,  we attributed such class visits to random clicks and removed all such log entries. We then calculated various parameters to help in identifying the central class, as well the other classes necessary for comprehending the central class.   Finally, we calculated the comprehension metrics defined in Section~\ref{sec:DataFramework}.
@@ -76,7 +78,10 @@ The second row of the table shows that during the 32 sessions for class B, devel
 
 Considering both the structural code metrics and the comprehension metrics reveals that class A is large and is highly coupled to other classes in the project, and also reveals that the developer spent a large amount of time working on class A. Our preliminary investigation of the code and comprehension metrics revealed several interesting results. When consider the values of $Count~Class~Coupled$, $\#~Other~Class~Accesses$, and $Time~Spent~in~Other~Classes$, we observe that for class A, which is the most highly coupled class in the project, $\#~Other~Class~Accesses$ and $Time~Spent~in~Other~Classes$ are both large. However, for classes B and C, we observe that the values of $\#~Other~Class~Accesses$ and $Time~Spent~in~Other~Classes$ are comparable, event though class C is less coupled than class B. Related to the $Large~Class$ smell, we observe that variation in $\#~Sessions$, $\#~Class~Visits$, and $Time~Spent~in~Class$ aligns with changes in $Count~Line~Code$. Among all three classes, decreases in $Count~Line~Code$ correspond to decreases in the values of $\#~Sessions$ and $\#~Class~Visits$. 
 
+The data presented in this analysis section provides the basic data for calculating interest payments.  There remain parameters to resolve calculation methods for estimation of interest payments and we describe plans to address these in the next section.
+
 %When we look at the parameters that we obtained from the log together with the code metrics we generated for the files we can see how the high numbers of Class A can be seen in both code metrics as well as navigation data. The navigation data shows the time spent by a developer in editing and comprehending class A is on the higher end and the fact that the code metrics shows us that it is the highest coupled class and one of the longest in terms of lines of source code we understand one cause for the high effort spent maintaining Class A.\Fix{Something more needs to be written here but do not know what?}
 
-Combining the $Time Spent in Class$ and the $Time Spent in Other Classes$ data for Class A, we estimate the interest payments on that class as 45 minutes per session spent comprehending Class A and related classes.  Against the average comprehension time per session we see this is an increase of x minutes per session meaning that y minutes can be attributed to the technical debt in that class.  If we consider the technical debt in Class B, we calculate 22 minutes per session which against the average of x minutes per session results in y minutes attributable to technical debt.
-
+%Combining the $Time~Spent~in~Class$ and the $Time~Spent~in~Other~Classes$ data for Class A, we estimate the interest payments on that class as 45 minutes per session spent comprehending Class A and related classes.  Against the average comprehension time per session we see this is an increase of x minutes per session meaning that y minutes can be attributed to the technical debt in that class.  If we consider the technical debt in Class B, we calculate 22 minutes per session which against the average of x minutes per session results in y minutes attributable to technical debt.
+%
+%To compute the interest cost for a given Class, we calculate a portion of the comprehension effort for the first session for that class as principal and consider subsequent sessions as interest payments of further comprehension effort necessary for the class.
