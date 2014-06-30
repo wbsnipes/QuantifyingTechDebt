@@ -1,7 +1,8 @@
-\begin{center}
-\begin{table*}[t]
+\begin{table*}[!t]
+    \renewcommand{\arraystretch}{1.3}
 	\centering
 	\caption{Class Structure Data}
+<<<<<<< HEAD
 	\begin{tabular}{|l|l|l|l|l|l|}
 	\hline
 
@@ -21,15 +22,25 @@ Class C & 1 & 32 & 0 & 2851 & 28\\
 %Class C & 1 & 32 & 0 & 2851 & 28\\
 %\hline
 
+=======
+	\begin{tabular}{lrrrrr}
+	\toprule
+\textbf{Class Name} & \textbf{Count Class Base} & \textbf{Count Class Coupled} & \textbf{Count Class Derived} & \textbf{Count Line Code} \Fix{show as \%} & \textbf{Count Declared Method} \Fix{show as \%}\\
+\midrule
+Class A & 10 & 272 & 1 & 15,040 & 247\\
+Class B & 3 & 98 & 0 & 9,360 & 52\\
+Class C & 1 & 32 & 0 & 2,851 & 28\\
+\bottomrule
+>>>>>>> origin/master
 	\end{tabular}
 	\label{fig:ClassStructureAnalysisData}
 \end{table*}
-\end{center}
 
-\begin{center}
-\begin{table*}[t]
+\begin{table*}[!t]
+    \renewcommand{\arraystretch}{1.3}
 	\centering
 	\caption{Class Data from Logs}
+<<<<<<< HEAD
 	\begin{tabular}{|l|l|l|l|l|l|l|}
 	\hline
 
@@ -48,10 +59,22 @@ Developer Y & Q & 7 & 12 & 20 & 24mins 08secs & 2hours 36mins 32secs\\
 Developer Y & R & 5 & 15 & 16 & 53mins 51secs & 40mins 18secs\\
 \hline
 
+=======
+	\begin{tabular}{llrrrrr}
+	\toprule
+\textbf{Developer Name} & \textbf{Class Name} & \textbf{\# Sessions} & \textbf{\# Class Visits} & \textbf{\# Other Class Accesses} & \textbf{Time Spent in Class} & \textbf{Time Spent in Other Classes}\\
+\midrule
+Developer X & A & 74 & 294 & 78 & 39 hr.\ 34 min.\ 23 sec. & 16 hr.\ 39 min.\ 36 sec.\\
+Developer X & B & 32 & 88 & 52 & 2 hr.\ 54 min.\ 20 sec. & 8 hr.\ 54 min.\ 18 sec.\\
+Developer X & C & 28 & 77 & 52 & 4 hr.\ 28 min.\ 25 sec. & 9 hr.\ 15 min.\ 41 sec.\\
+Developer Y & P & 10 & 45 & 24 & 2 hr.\ 19 min.\ 13 sec. & 1 hr.\ 43 min.\ 12 sec.\\
+Developer Y & Q & 7 & 12 & 20 & 24 min.\ 08 sec. & 2 hr.\ 36 min.\ 32 sec.\\
+Developer Y & R & 5 & 15 & 16 & 53 min.\ 51 sec. & 40 min.\ 18 sec.\\
+\bottomrule
+>>>>>>> origin/master
 	\end{tabular}
 	\label{fig:ClassAnalysisData}
 \end{table*}
-\end{center}
 
 As previously mentioned we first define sessions to investigate each class that a developer visits. We define session as a moving window time where developer is investigating a certain class. 
 %\Fix{Will:The picture of sessions replaces these 2 sentences}
