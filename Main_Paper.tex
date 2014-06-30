@@ -1,5 +1,11 @@
 \documentclass[conference]{IEEEtran}
 
+\makeatletter
+% IEEEtran.cls defines \labelindent for backward compatibility reasons
+% Undefine \labelindent to allow the use of package enumitem
+\let\labelindent\relax
+\makeatother
+
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{cite}
